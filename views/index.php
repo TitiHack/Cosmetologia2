@@ -42,21 +42,30 @@ $todosProductos = $producto->obtenerTodos(); // Obtiene todos los productos
             <p><a href="../views/acercade.php">Acerca de</a></p>
         </div>
 
-        <div class="slide">
-            <div class="tarjet-container">
+            <div class="slide">
                 <?php foreach ($todosProductos as $producto): ?>
-                <div class="tarjet">
+                <div class="tarjeta">
                     <div class="div-tarjet-img">
                         <img src="<?php echo $producto['imagen']; ?>" alt="<?php echo $producto['nombre']; ?>">
                     </div>
-                    <h2><?php echo $producto['nombre']; ?></h2>             
-                    <p class="precio"><?php echo number_format($producto['precio'], 2, ',', '.'); ?>$</p>
+                    <h2 class="nameProduct"><?php echo $producto['nombre']; ?></h2>
+                    
+                    <div class="category">
+                        <p class="SpaceP">Categoria:   </p>
                     <p><?php echo $producto['categoria']; ?></p>
+
+                    </div>
+                    <div class="price">
+                        <p  class="SpaceP">Precio:  </p>
+
+                        <p class="precio"><?php echo number_format($producto['precio'], 0, ',', '.'); ?>$</p>
+                        
+                    </div>
+                    <button >Ver Mas...</button>
                 </div>
                 <?php endforeach; ?>
             </div>
-        </div>
-        
+                
     </main>
 
     <footer>

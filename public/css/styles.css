@@ -138,50 +138,90 @@ main{
     flex-wrap: wrap;
     background-color: #fff;
     margin: 1.2rem 1.2rem 6rem 0;
-    height: 30rem;
     border-radius: 0.5rem;
 }
-.tarjet{
-    margin-top: 0.5rem;
-    width: 12rem;
+.tarjeta{
+    margin-top: 2rem;
+    
+    width: 15rem;
     border: 3px solid  #c9c6c6;;
     border-radius: 10px;
     text-align: center;
-    height: 90%;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    height: 16rem;
-    background-color: #e4e2e2;
+    height: 20rem;
 
 }
 .tarjet h2{
     font-family: 'Merienda';
-    font-size: 1.2rem;
+    
 }
 .precio{
-    font-size: 1.3rem;
+   
     text-align: start;
+    font-weight: 800;
+    font-size: 1.2rem;
+}
+.price{
+    display: flex;
+    padding:0 2rem;
+    margin: 5px 0;
+    font-family: 'Merienda';
+
+}
+.SpaceP{
+    margin-right: 0.5rem;
+}
+.category{
+    display: flex;
+    font-family: 'Merienda';
+
+    padding:0 2rem;
+    margin: 10px 0 0 0;
+    
 }
 .div-tarjet-img {
-    height: 250px;
+    height: 10rem;
     width: 100%; 
     overflow: hidden; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
   
   .div-tarjet-img img {
-    height: 100%;
-    width: 100%; 
+    height: 90%;
+    width: 90%; 
     object-fit: cover;
-    border-radius: 10px;
   }
-  
+  .nameProduct{
+    font-size: 1rem;
+    font-family: 'Merienda';
+    background-color: #e13e77;
+    height: 2rem;
+    color: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+
 #Buy{
     background-color: rgb(223, 113, 208);
     padding: 0.5rem ;
     margin-top: 0.5rem;
     overflow-y: auto;
     border-radius: 0 0 10px 10px;
+}
+.tarjeta button{
+    width: 70%;
+    height: 2rem;
+    border: 2px solid #e13e77;
+    color: #e13e77;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-self: center;
 }
 
 footer{

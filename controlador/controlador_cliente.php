@@ -12,10 +12,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         // Crear un nuevo cliente
         if ($accion === 'crear') {
-            $documento = $_POST['documento'];
+            $documento = $_POST['docu_clie'];
             $nombre = $_POST['nombre'];
             $email = $_POST['email'];
-            $contrasena = $_POST['contrasena']; 
+            $contrasena = $_POST['contraseña']; 
             $apellido = $_POST['apellido'];
             $celular = $_POST['celular'];
             $cliente->crear($documento, $nombre, $email, $contrasena,$celular,$apellido);
@@ -23,22 +23,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         // Actualizar un cliente
         } elseif ($accion === 'actualizar') {
-            $documento = $_POST['documento'];
+            $documento = $_POST['docu_clie'];
             $nombre = $_POST['nombre'];
+            $apellido = $_POST['apellido'];
+            $contrasena = $_POST['contraseña'];
             $email = $_POST['email'];
-            $cliente->actualizar($documento, $nombre, $email);
-            echo "Cliente actualizado con éxito";
+            $celular = $_POST['celular'];
+            $cliente->actualizar($documento, $nombre, $email, $apellido, $celular, $contrasena);
 
         // Eliminar un cliente
         } elseif ($accion === 'eliminar') {
-            $documento = $_POST['documento'];
+            $documento = $_POST['docu_clie'];
             $cliente->eliminar($documento);
             echo "Cliente eliminado con éxito";
 
         // Iniciar sesión
         } elseif ($accion === 'iniciar_sesion') {
-            $documento = $_POST['documento'];
-            $contrasena = $_POST['contrasena'];
+            $documento = $_POST['docu_clie'];
+            $contrasena = $_POST['contraseña'];
     
             $clienteInfo = $cliente->iniciarSesion($documento, $contrasena);
             if ($clienteInfo) {
@@ -59,8 +61,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 // Obtener un cliente por documento
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-    if (isset($_GET['documento'])) {
-        $documento = $_GET['documento'];
+    if (isset($_GET['docu_clie'])) {
+        $documento = $_GET['docu_clie'];
         $clienteInfo = $cliente->obtenerPorDocumento($documento);
         echo json_encode($clienteInfo);
 

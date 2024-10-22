@@ -6,21 +6,21 @@ error_reporting(E_ALL);
 class Producto {
     private $db;
 
-    public function __construct($conexion) {
-        $this->db = $conexion;
+    public function __construct($conn) {
+        $this->db = $conn;
     }
 
     // Crear un nuevo producto
     public function crear($id_producto, $nombre, $descripcion, $precio, $imagen, $docu_prov, $stock, $categoria) {
         $consulta = $this->db->prepare("INSERT INTO producto (id_producto, nombre, descripcion, precio, imagen, docu_prov, stock, categoria) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
-        $consulta->bind_param("issdsisi", $id_producto, $nombre, $descripcion, $precio, $imagen, $docu_prov, $stock, $categoria);
+        $consulta->bind_param("issdsiss", $id_producto, $nombre, $descripcion, $precio, $imagen, $docu_prov, $stock, $categoria);
         return $consulta->execute();
     }
 
     // Actualizar un producto
     public function actualizar($id_producto, $nombre, $descripcion, $precio, $imagen, $docu_prov, $stock, $categoria) {
         $consulta = $this->db->prepare("UPDATE producto SET nombre = ?, descripcion = ?, precio = ?, imagen = ?, docu_prov = ?, stock = ?, categoria = ? WHERE id_producto = ?");
-        $consulta->bind_param("ssdsisii", $nombre, $descripcion, $precio, $imagen, $docu_prov, $stock, $categoria, $id_producto);
+        $consulta->bind_param("issdsisi", $id_producto, $nombre, $descripcion, $precio, $imagen, $docu_prov, $stock, $categoria);
         return $consulta->execute();
     }
 

@@ -31,17 +31,17 @@ class Cliente {
     }
 
     // Crear un nuevo cliente
-    public function crear($documento, $nombre, $email, $contrasena,$celular,$apellido) {
+    public function crear($docu_clie, $nombre, $email, $contrasena,$celular,$apellido) {
         $consulta = $this->db->prepare("INSERT INTO cliente (docu_clie, nombre, email, contraseña,celular,apellido) VALUES (?, ?, ?, ?,?,?)");
         $hashed_password = password_hash($contrasena, PASSWORD_DEFAULT); // Hashear la contraseña
-        $consulta->bind_param("ssssss", $documento, $nombre, $email, $hashed_password,$celular,$apellido);
+        $consulta->bind_param("ssssss", $nombre, $email, $hashed_password,$celular,$apellido);
         return $consulta->execute();
     }
 
     // Actualizar un cliente
-    public function actualizar($docu_clie, $nombre, $email) {
-        $consulta = $this->db->prepare("UPDATE cliente SET nombre = ?, email = ? WHERE docu_clie = ?");
-        $consulta->bind_param("sss", $nombre, $email, $docu_clie);
+    public function actualizar($docu_clie, $nombre, $email, $apellido, $contraseña, $celular) {
+        $consulta = $this->db->prepare("UPDATE cliente SET nombre = ?, email = ?, contraseña = ?, apellido = ?, celular = ? WHERE docu_clie = ?");
+        $consulta->bind_param("ssssss", $nombre, $apellido, $contraseña, $email, $celular, $docu_clie);
         return $consulta->execute();
     }
 

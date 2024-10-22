@@ -32,8 +32,8 @@ include_once '../controlador/controlador_producto.php'; // Asegúrate de incluir
 
     <div class="container mt-5">
         <h2>Agregar/Actualizar Producto</h2>
-        <form action="" method="POST" class="mb-4">
-            <input type="hidden" name="accion" value="crear" id="accion">
+        <form action="../controlador/controlador_producto.php" method="POST" enctype="multipart/form-data">
+        <input type="hidden" name="accion" value="crear" id="accion">
             <input type="hidden" name="id_producto" id="id_producto"> <!-- Para actualizar -->
             <div class="form-group">
                 <label for="nombre">Nombre:</label>

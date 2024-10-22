@@ -139,24 +139,22 @@ main{
 .slide{
     width: 60rem;
     display: flex;
-    justify-content: space-evenly;
-    margin-left: 5rem;
-    margin: 4rem;
     flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
     background-color: #fff;
     margin: 1.2rem 1.2rem 6rem 0;
     height: 15rem;
     border-radius: 0.5rem;
+    height: 10rem;
 }
-.tarjet{
-    margin-top: 0.5rem;
+.slide button{
+    margin-top: 0.2rem;
     width: 16rem;
     border-radius: 10px;
     text-align: center;
     display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    height: 3rem;
+
     
 
 }
@@ -168,8 +166,8 @@ main{
     border-color: pink;
 }
 
-.tarjet button{
-    height: 3rem;
+.slide button{
+    height: 2rem;
     width: 16rem;
     border-radius: 10px;
     border-color: pink;
@@ -180,11 +178,10 @@ main{
 
 }
 .tarjet p{
-    position: absolute;   
     font-size: 15px;
 }
 
-.tarjet :hover{
+.slide :hover{
     border-color: palevioletred;
 }
 
@@ -214,4 +211,9 @@ footer img{
 a{
     text-decoration: none;
     color: #808080;
+}
+.slide2{
+    width: 60rem;
+    height: 20rem;
+    background-color: #fff;
 }

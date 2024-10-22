@@ -38,59 +38,89 @@
             <p><a href="../views/productos.php">Productos</a></p>
             <p><a href="../views/acercade.php">Acerca de</a></p>
         </div>
-
+        <div class="contenedor">
         <div class="slide">
-            <div class="tarjet">
+            
                 <button>
                         
                         <p>Hidratacion y nutricion de la piel</p>
                 </button>             
-            </div>
-            <div class="tarjet">
+            
+            
                 <button>
                     
                     <p>Tratamientos corporales</p>
                 </button>             
-            </div>
-            <div class="tarjet">
+            
+            
                 <button>
                     
                     <p>Depilacion</p>
                 </button>             
-            </div>
-            <div class="tarjet">
+            
+            
                 <button>
                     
                     <p>Tratamientos para el cabello</p>
                 </button>             
-            </div>
-            <div class="tarjet">
+            
+            
                 <button>
                     
                     <p>Tratamientos para el acné</p>
                 </button>             
-            </div>
-            <div class="tarjet">
+            
+            
                 <button>
                     
                     <p>Spa de uñas</p>
                 </button>             
-            </div>
-            <div class="tarjet">
+            
+            
                 <button>
                     
                     <p>Bronceado</p>
                 </button>             
-            </div>
-            <div class="tarjet">
+            
+            
                 <button>
                     
                     <p>Masajes</p>
                 </button>             
-            </div>
+            
             
         </div>
         
+       
+
+            <div class="slide2">
+                <h1>a</h1>
+                <?php foreach ($todosServicios as $servicio): ?>
+                <div class="tarjeta">
+                    <div class="div-tarjet-img">
+                        <img src="<?php echo $servicio['imagen']; ?>" alt="<?php echo $servicio['nombre']; ?>">
+                    </div>
+                    <h2 class="nameProduct"><?php echo $servicio['nombre']; ?></h2>
+                    
+                    <div class="category">
+                        <p class="SpaceP">Categoria:   </p>
+                    <p><?php echo $servicio['categoria']; ?></p>
+
+                    </div>
+                    <div class="price">
+                        <p  class="SpaceP">Precio:  </p>
+
+                        <p class="precio"><?php echo number_format($servicio['precio'], 0, ',', '.'); ?>$</p>
+                        
+                    </div>
+                    <button >Ver Mas...</button>
+                </div>
+                <?php endforeach; ?>
+            </div>
+         
+        </div>
+
+               
     </main>
 
     <footer>
