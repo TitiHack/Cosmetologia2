@@ -1,128 +1,150 @@
+
 <?php
 session_start();
-include_once '../controlador/controlador_producto.php'; // Asegúrate de incluir el controlador
+include_once '../controlador/controlador_producto.php'; 
+$todosProductos = $producto->obtenerTodos();
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gestión de Productos</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../public/css/styles-productos.css"> <!-- Enlaza tu CSS -->
+    <title>producto</title>
+    <link rel="stylesheet" href="../public/css/styles-productos.css"> <!-- Enlaza CSS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Merienda:wght@300..900&family=Playwrite+CU:wght@100..400&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header class="bg-primary text-white text-center py-3">
-        <h1>Gestión de Productos</h1>
-        <nav>
-            <ul class="nav justify-content-center">
-                <li class="nav-item">
-                    <a class="nav-link text-white" href="../views/index.php">Inicio</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white" href="../views/inicio-sesion.php">Iniciar sesión</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white" href="../views/acercade.php">Acerca de</a>
-                </li>
-            </ul>
-        </nav>
+
+    <header>
+
+        <div class="headerOne">
+            <button>Iiciar sesion</button>
+            <button>Registrarse</button>
+        </div>
+
+        <div class="headerTwo">
+                <img src="../public/images/logo2.jpeg" id="logo" alt="">
+                <h1>Cosmetologia Ilusion Y Belleza</h1>          
+                <div class="header2">
+                    
+                </div>
+                <div class="icons">
+                    <button><a href="../views/nuevo.php">Nuevo</a></button>
+                    <img src="../public//images/carro-de-la-compra.png" alt="">
+                    <a href="../views/registro.php"><img src="../public/images/avatar.png" alt=""></a>
+                </div>
+            </div>
+        </div>
+           
+        
     </header>
+    <main>
+        <div class="menu">
+            <p><a href="../views/index.php">Inicio</a></p>
+            <p><a href="../views/servicios.php">Servicios</a></p>
+            <p><a href="../views/index.php">Productos</a></p>
+            <p><a href="../views/acercade.php">Acerca de</a></p>
+        </div>
+        <div class="contenedor">
+        <div class="slide2">    
+                <form action="../controlador/controlador_producto.php" method="get">
 
-    <div class="container mt-5">
-        <h2>Agregar/Actualizar Producto</h2>
-        <form action="../controlador/controlador_producto.php" method="POST" enctype="multipart/form-data">
-        <input type="hidden" name="accion" value="crear" id="accion">
-            <input type="hidden" name="id_producto" id="id_producto"> <!-- Para actualizar -->
-            <div class="form-group">
-                <label for="nombre">Nombre:</label>
-                <input type="text" class="form-control" name="nombre" id="nombre" required>
-            </div>
-            <div class="form-group">
-                <label for="descripcion">Descripción:</label>
-                <input type="text" class="form-control" name="descripcion" id="descripcion" required>
-            </div>
-            <div class="form-group">
-                <label for="precio">Precio:</label>
-                <input type="number" class="form-control" name="precio" id="precio" required>
-            </div>
-            <div class="form-group">
-                <label for="imagen">Imagen:</label>
-                <input type="file" class="form-control" name="imagen" id="imagen" required>
-            </div>
-            <div class="form-group">
-                <label for="categoria">Categoria:</label>
-                <input type="text" class="form-control" name="categoria" id="categoria" required>
-            </div>
-            <div class="form-group">
-                <label for="docu_prov">Documento Proveedor:</label>
-                <input type="text" class="form-control" name="docu_prov" id="docu_prov" required>
-            </div>
-            <div class="form-group">
-                <label for="stock">Stock:</label>
-                <input type="number" class="form-control" name="stock" id="stock" required>
-            </div>
-            <button type="submit" class="btn btn-success">Guardar Producto</button>
-        </form>
+                <input type="submit" name="accion" value="Hidratacion">
+                      <input type="hidden" name="">  
+                        <p>Hidratacion y nutricion de la piel</p>
+                </input>             
+            
+            
+                <button>
+                    
+                    <p>Tratamientos corporales</p>
+                </button>             
+            
+            
+                <button>
+                    
+                    <p>Depilacion</p>
+                </button>             
+            
+            
+                <button>
+                    
+                    <p>Tratamientos para el cabello</p>
+                </button>             
+            
+            
+                <button>
+                    
+                    <p>Tratamientos para el acné</p>
+                </button>             
+            
+            
+                <button>
+                    
+                    <p>Spa de uñas</p>
+                </button>             
+            
+            
+                <button>
+                    
+                    <p>Bronceado</p>
+                </button>             
+            
+            
+                <button>
+                    
+                    <p>Masajes</p>
+                </button>             
+            
+            
+                </form>
+                
+        </div>
+        
+       
 
-        <h2>Lista de Productos</h2>
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>ID Producto</th>
-                    <th>Nombre</th>
-                    <th>Descripción</th>
-                    <th>Precio</th>
-                    <th>Imagen</th>
-                    <th>Documento Proveedor</th>
-                    <th>Categoria</th>
-                    <th>Stock</th>
-                    <th>Acciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php
-                $todosProductos = $producto->obtenerTodos();
-                foreach ($todosProductos as $producto) {
-                    echo "<tr>
-                        <td>{$producto['id_producto']}</td>
-                        <td>{$producto['nombre']}</td>
-                        <td>{$producto['descripcion']}</td>
-                        <td>{$producto['precio']}</td>
-                        <td><img src='{$producto['imagen']}' alt='Imagen' width='50'></td>
-                        <td>{$producto['docu_prov']}</td>
-                        <td>{$producto['categoria']}</td>
-                        <td>{$producto['stock']}</td>
-                        <td>
-                            <button class='btn btn-warning' onclick='editarProducto(" . json_encode($producto) . ")'>Editar</button>
-                            <form action='' method='POST' style='display:inline;'>
-                                <input type='hidden' name='accion' value='eliminar'>
-                                <input type='hidden' name='id_producto' value='{$producto['id_producto']}'>
-                                <button type='submit' class='btn btn-danger' onclick='return confirm(\"¿Estás seguro de eliminar este producto?\")'>Eliminar</button>
-                            </form>
-                        </td>
-                    </tr>";
-                }
-                ?>
-            </tbody>
-        </table>
-    </div>
+            <div class="slide">
+                <h1>a</h1>
+                <?php 
 
-    <script>
-        function editarProducto(producto) {
-            document.getElementById('accion').value = 'actualizar';
-            document.getElementById('id_producto').value = producto.id_producto;
-            document.getElementById('nombre').value = producto.nombre;
-            document.getElementById('descripcion').value = producto.descripcion;
-            document.getElementById('precio').value = producto.precio;
-            document.getElementById('imagen').value = producto.imagen;
-            document.getElementById('docu_prov').value = producto.docu_prov;
-            document.getElementById('stock').value = producto.stock;
-        }
-    </script>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+                foreach ($todosProductos as $producto): ?>
+                <div class="tarjeta">
+                    <div class="div-tarjet-img">
+                        <img src="<?php echo $producto['imagen']; ?>" alt="<?php echo $producto['nombre']; ?>">
+                    </div>
+                    <h2 class="nameProduct"><?php echo $producto['nombre']; ?></h2>
+                    
+                    <div class="category">
+                        <p class="SpaceP">Categoria:   </p>
+                    <p><?php echo $producto['categoria']; ?></p>
+
+                    </div>
+                    <div class="price">
+                        <p  class="SpaceP">Precio:  </p>
+
+                        <p class="precio"><?php echo number_format($producto['precio'], 0, ',', '.'); ?>$</p>
+                        
+                    </div>
+                    <button >Ver Mas...</button>
+                </div>
+                <?php endforeach; ?>
+            </div>
+         
+        </div>
+
+               
+    </main>
+
+    <footer>
+        <p>Correo:cosmetologiawmcj@gmail.com</p>
+        <p>Telefono:3123211</p>
+
+        
+    </footer>
+
+    
+    
 </body>
 </html>

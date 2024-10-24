@@ -1,5 +1,7 @@
 <?php
 // Asegúrate de incluir el archivo de conexión y el modelo de productos
+session_start();
+
 include_once '../Conexion/conexion.php';
 include_once '../models/ProductoModelo.php';
 
@@ -27,9 +29,15 @@ $todosProductos = $producto->obtenerTodos(); // Obtiene todos los productos
             <h1>Cosmetologia Ilusion Y Belleza</h1>          
             <div class="header2"></div>
             <div class="icons">
+            <?php if (isset($_SESSION['cliente']) /*&& $_SESSION['rol']*/ ): ?>
+                <button><a href="../views/admin.php">Administrar</a></button>
+            <?php endif; ?>
                 <button><a href="../views/nuevo.php">Nuevo</a></button>
                 <img src="../public/images/carro-de-la-compra.png" alt="">
-                <a href="../views/registro.php"><img src="../public/images/avatar.png" alt=""></a>
+                <?php if (isset($_SESSION['cliente']) /*&& $_SESSION['rol']*/ ): ?>
+                    <a href="../views/perfil.php"><img src="../public/images/avatar.png" alt=""></a>
+
+            <?php endif; ?>
             </div>
         </div>
     </header>
@@ -65,18 +73,17 @@ $todosProductos = $producto->obtenerTodos(); // Obtiene todos los productos
                 </div>
                 <?php endforeach; ?>
             </div>
+            <div>
+                <p></p>
+            </div>
                 
     </main>
 
     <footer>
         <p>Correo: cosmetologiawmcj@gmail.com</p>
-        <p>Telefono: 3123211</p>
+        <p>Telefono: 3186882571</p>
 
-        <div>
-            <img src="../public/images/bxl-whatsapp.svg" alt="">
-            <img src="../public/images/bxl-instagram.svg" alt="">
-        </div>
-    </footer>
+        </footer>
 
 </body>
 </html>

@@ -1,12 +1,38 @@
 <?php
 include_once '../Conexion/conexion.php';
 include_once '../models/ProductoModelo.php';
-
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 $producto = new Producto($conn);
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $accion = $_POST['accion'];
+    
     if (isset($_POST['accion'])) {
-        $id_producto = $_POST['id_producto'];
+
+        if ($accion === 'eliminar') {
+            if (!empty($_POST['id_producto'])) {
+                $id_producto = $_POST['id_producto'];
+                
+                if ($producto->eliminar($id_producto)) {
+                    echo "<script>
+                            alert('Producto eliminado correctamente');
+                            window.location.href = '../views/Productoscrud.php';  
+                          </script>";
+                    exit;
+                } else {
+                    echo "Error al eliminar el producto.";
+                    exit;
+                }
+            } else {
+                echo "ID del producto no proporcionado.";
+                exit;
+            }
+        }
+        
+        elseif ($accion == 'crear') {
+            $id_producto = $_POST['id_producto'];
             $nombre = $_POST['nombre'];
             $descripcion = $_POST['descripcion'];
             $precio = $_POST['precio'];
@@ -39,9 +65,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                  // Mover el archivo subido a la carpeta IMAGES
                  if (move_uploaded_file($tmpName, $rutaDestino)) {
                      // Guardar el producto en la base de datos (debes implementar la lógica de tu modelo)
-                     $producto->crear($id_producto, $nombre, $descripcion, $precio, $rutaDestino, $docu_prov, $stock, $categoria);
- 
-                     echo "Producto agregado correctamente.";
+                     if ($producto->crear($id_producto, $nombre, $descripcion, $precio, $rutaDestino, $docu_prov, $stock, $categoria)) {
+                        echo "<script>
+                                    alert('Producto creado correctamente');
+                                    window.location.href = '../views/Productoscrud.php';  
+                              </script>";
+                     } 
+                    
+
                  } else {
                      echo "Error al mover la imagen.";
                  }
@@ -50,33 +81,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
              }
          }
          }
-        
-        // Actualizar un producto
-        elseif ($accion === 'actualizar') {
-            $id_producto = $_POST['id_producto'];
-            $nombre = $_POST['nombre'];
-            $descripcion = $_POST['descripcion'];
-            $precio = $_POST['precio'];
-            $imagen = $_POST['imagen'];
-            $docu_prov = $_POST['docu_prov'];
-            $stock = $_POST['stock'];
-            $categoria = $_POST['categoria']; // Nuevo campo para categoría
+              exit;  }
 
-            // Actualizar el producto
-            $producto->actualizar($id_producto, $nombre, $descripcion, $precio, $imagen, $docu_prov, $stock, $categoria);
-            // Redirigir a la página de gestión de productos
-            header("Location: ../views/productos.php");
-            exit;
-        }
-
+            
+       
         // Eliminar un producto
-        elseif ($accion === 'eliminar') {
-            $id_producto = $_POST['id_producto'];
-            $producto->eliminar($id_producto);
-            // Redirigir a la página de gestión de productos
-            header("Location: ../views/productos.php");
-            exit;
-        }
+        
+        
     }
 
 

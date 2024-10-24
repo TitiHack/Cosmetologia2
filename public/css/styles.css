@@ -70,7 +70,7 @@ header{
 }
 .icons{
     display: flex;
-    width: 9rem;
+    width: 20rem;
     justify-content: space-around;
     
 }
@@ -80,7 +80,7 @@ header{
     border: none;
     color: #fff;
     font-family: 'Merienda';
-    width: 3rem;
+    width: 5rem;
     border-radius: 1rem;
 }
 .icons img{
@@ -139,6 +139,22 @@ main{
     background-color: #fff;
     margin: 1.2rem 1.2rem 6rem 0;
     border-radius: 0.5rem;
+}
+.slide2{
+    width: 60rem;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    position: relative;
+    top: -3rem;
+}
+.slide2 button {
+    height: 2rem;
+    width: 14rem;
+    border:1px solid  #e13e77;
+    border-radius: 0.6rem;
+    margin-top: 1rem;
+    
 }
 .tarjeta{
     margin-top: 2rem;

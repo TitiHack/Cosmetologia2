@@ -92,11 +92,7 @@
         <p>Correo:cosmetologiawmcj@gmail.com</p>
         <p>Telefono:3123211</p>
 
-        <div>
-            <img src="../public/images/bxl-whatsapp.svg" alt="">
-            <img src="../public/images/bxl-instagram.svg" alt="">
-        </div>
-
+        
     </footer>
 
     

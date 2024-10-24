@@ -7,16 +7,16 @@ class Servicio {
     }
 
     // Crear un nuevo servicio
-    public function crear($id_servicio, $nombre, $descripcion, $precio, $imagen, $docu_prov, $categoria) {
+    public function crear($id_servicio, $nombre, $descripcion, $precio, $rutaDestino, $docu_prov, $categoria) {
         $consulta = $this->db->prepare("INSERT INTO servicio (id_servicio, nombre, descripcion, precio, imagen, docu_prov, categoria) VALUES (?, ?, ?, ?, ?, ?, ?)");
-        $consulta->bind_param("issdiss", $id_servicio, $nombre, $descripcion, $precio, $imagen, $docu_prov, $categoria);
+        $consulta->bind_param("issdsss", $id_servicio, $nombre, $descripcion, $precio, $rutaDestino, $docu_prov, $categoria);
         return $consulta->execute();
     }
 
     // Actualizar un servicio
-    public function actualizar($id_servicio, $nombre, $descripcion, $precio, $imagen, $docu_prov, $categoria) {
+    public function actualizar($id_servicio, $nombre, $descripcion, $precio, $rutaDestino, $docu_prov, $categoria) {
         $consulta = $this->db->prepare("UPDATE servicio SET nombre = ?, descripcion = ?, precio = ?, imagen = ?, docu_prov = ?, categoria = ? WHERE id_servicio = ?");
-        $consulta->bind_param("issdssi", $nombre, $descripcion, $precio, $imagen, $docu_prov, $categoria, $id_servicio);
+        $consulta->bind_param("issdssi", $nombre, $descripcion, $precio, $rutaDestino, $docu_prov, $categoria, $id_servicio);
         return $consulta->execute();
     }
 
@@ -28,9 +28,9 @@ class Servicio {
     }
 
     // Obtener un servicio por ID
-    public function obtenerPorId($id_servicio) {
-        $consulta = $this->db->prepare("SELECT * FROM servicio WHERE id_servicio = ?");
-        $consulta->bind_param("i", $id_servicio);
+    public function obtenerPorCategoria($id_producto) {
+        $consulta = $this->db->prepare("SELECT * FROM servicio WHERE categoria = ?");
+        $consulta->bind_param("s", $categoria);
         $consulta->execute();
         $resultado = $consulta->get_result();
         return $resultado->fetch_assoc();

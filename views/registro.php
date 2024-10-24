@@ -27,7 +27,7 @@
         </div>
 
         <form action="../controlador/controlador_cliente.php" method="post">
-            <input type="hidden" name="accion" value="crear"> 
+            <input type="hidden" name="accion" value="crearcliente"> 
             <div class="contenido">
                 <div class="contItems">
                     <div class="alineado">
@@ -36,7 +36,7 @@
                     </div>
                     <div class="alineado">
                         <h3>Documento:</h3>
-                        <input type="text" name="documento" required>
+                        <input type="text" name="docu_clie" required>
                     </div>
                     <div class="alineado">
                         <h3>Celular:</h3>
@@ -53,7 +53,7 @@
                     </div>
                     <div class="alineado">
                         <h3>Contraseña:</h3>
-                        <input type="password" name="contrasena" required>
+                        <input type="password" name="contraseña" required>
                     </div>
                 </div>
 

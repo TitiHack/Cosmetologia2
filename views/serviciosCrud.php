@@ -20,12 +20,14 @@
 
     <section class="mt-4">
         <h2>Agregar Nuevo Servicio</h2>
-        <form action="" method="POST">
+        <form action="../controlador/controlador_servicio.php" method="POST" enctype="multipart/form-data">
             <input type="hidden" name="accion" value="agregar">
+          
             <div class="form-group">
-                <label for="id_servicio">ID Servicio:</label>
-                <input type="number" name="id_servicio" class="form-control" required>
+                <label for="id_servicio">Id:</label>
+                <input type="text" name="id_servicio" class="form-control" required>
             </div>
+            <div class="form-group">
             <div class="form-group">
                 <label for="nombre">Nombre:</label>
                 <input type="text" name="nombre" class="form-control" required>
@@ -40,7 +42,7 @@
             </div>
             <div class="form-group">
                 <label for="imagen">Imagen URL:</label>
-                <input type="text" name="imagen" class="form-control" required>
+                <input type="file" name="imagen" class="form-control" required>
             </div>
             <div class="form-group">
                 <label for="docu_prov">Documento Proveedor:</label>
@@ -140,10 +142,6 @@
 </div>
 
 
-<footer>
-    <p>Correo: cosmetologiawmcj@gmail.com</p>
-    <p>Telefono: 3123211</p>
-</footer>
 <script>
 function editarServicio(servicio) {
     document.getElementById('editIdServicio').value = servicio.id_servicio;

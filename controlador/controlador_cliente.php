@@ -12,37 +12,50 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         // Crear un nuevo cliente
         if ($accion === 'crear') {
-            $documento = $_POST['docu_clie'];
+            $docu_clie = $_POST['docu_clie'];
             $nombre = $_POST['nombre'];
             $email = $_POST['email'];
             $contrasena = $_POST['contraseña']; 
             $apellido = $_POST['apellido'];
             $celular = $_POST['celular'];
-            $cliente->crear($documento, $nombre, $email, $contrasena,$celular,$apellido);
+            $cliente->crear($docu_clie, $nombre, $email, $contrasena,$celular,$apellido);
             echo "Cliente creado con éxito";
+            header("Location: ../views/Clientecrud.php");
 
+        }elseif ($accion === 'crearcliente') {
+                $docu_clie = $_POST['docu_clie'];
+                $nombre = $_POST['nombre'];
+                $email = $_POST['email'];
+                $contrasena = $_POST['contraseña']; 
+                $apellido = $_POST['apellido'];
+                $celular = $_POST['celular'];
+                $cliente->crear($docu_clie, $nombre, $email, $contrasena,$celular,$apellido);
+                echo "Cliente creado con éxito";
+                header("Location: ../views/registro.php");
+                
         // Actualizar un cliente
         } elseif ($accion === 'actualizar') {
-            $documento = $_POST['docu_clie'];
+            $docu_clie = $_POST['docu_clie'];
             $nombre = $_POST['nombre'];
             $apellido = $_POST['apellido'];
             $contrasena = $_POST['contraseña'];
             $email = $_POST['email'];
             $celular = $_POST['celular'];
-            $cliente->actualizar($documento, $nombre, $email, $apellido, $celular, $contrasena);
-
+            $cliente->actualizar($docu_clie, $nombre, $email, $apellido, $celular, $contrasena);
+            header("Location: ../views/Clientecrud.php");
         // Eliminar un cliente
         } elseif ($accion === 'eliminar') {
-            $documento = $_POST['docu_clie'];
-            $cliente->eliminar($documento);
+            $docu_clie = $_POST['docu_clie'];
+            $cliente->eliminar($docu_clie);
             echo "Cliente eliminado con éxito";
 
         // Iniciar sesión
         } elseif ($accion === 'iniciar_sesion') {
-            $documento = $_POST['docu_clie'];
+
+            $docu_clie = $_POST['docu_clie'];
             $contrasena = $_POST['contraseña'];
-    
-            $clienteInfo = $cliente->iniciarSesion($documento, $contrasena);
+         
+            $clienteInfo = $cliente->iniciarSesion($docu_clie, $contrasena);
             if ($clienteInfo) {
                 session_start();
 
@@ -59,17 +72,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-// Obtener un cliente por documento
+// Obtener un cliente por docu_clie
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     if (isset($_GET['docu_clie'])) {
-        $documento = $_GET['docu_clie'];
-        $clienteInfo = $cliente->obtenerPorDocumento($documento);
+        $docu_clie = $_GET['docu_clie'];
+        $clienteInfo = $cliente->obtenerPorDocumento($docu_clie);
         echo json_encode($clienteInfo);
 
     // Obtener todos los clientes
     } else {
         $todosClientes = $cliente->obtenerTodos();
-        echo json_encode($todosClientes);
+        json_encode($todosClientes);
     }
 }
 ?>

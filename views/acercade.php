@@ -43,12 +43,12 @@
 
             <div class="acercadecont1">
                 <h2>Quienes somos:</h2>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt.</p>
+                <p>Somos una pagina web que ofrece un espacio en el cual pueden comprar y ofrecer productos.</p>
                 <h2>Mision:</h2>
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Illo voluptate quam a sed voluptates.</p>
+                <p>Ser una pagina web lider en la venta de productos y servicios en el ambito de la belleza.</p>
                 <h2>Vision:</h2>
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eius perspiciatis quos optio aliquam porro in maxime sunt corrupti iure repudiandae odit temporibus ipsa ut, deserunt delectus accusantium qui, suscipit incidunt!</p>
-                <h2>Patrocinadores:</h2>
+                <p>En el 2027 tener una mayor visibilidad en toda colombia obteniendo patrocinios importantes con marcas reconocidas y especializadas en la belleza.</p>
+                
             </div>    
         </div>
         
@@ -59,8 +59,7 @@
         <p>Telefono:3123211</p>
 
         <div>
-            <img src="../public/images/bxl-whatsapp.svg" alt="">
-            <img src="../public/images/bxl-instagram.svg" alt="">
+            
         </div>
 
     </footer>

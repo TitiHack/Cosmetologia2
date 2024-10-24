@@ -1,10 +1,16 @@
+
+<?php
+session_start();
+include_once '../controlador/controlador_servicio.php'; 
+$todosServicios = $servicio->obtenerTodos();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Servicios</title>
-    <link rel="stylesheet" href="../public/css/styles-servicios.css">
+    <link rel="stylesheet" href="../public/css/styles-servicios.css"> <!-- Enlaza CSS -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Merienda:wght@300..900&family=Playwrite+CU:wght@100..400&display=swap" rel="stylesheet">
@@ -13,7 +19,10 @@
 
     <header>
 
-        <div class="headerOne"></div>
+        <div class="headerOne">
+            <button>Iiciar sesion</button>
+            <button>Registrarse</button>
+        </div>
 
         <div class="headerTwo">
                 <img src="../public/images/logo2.jpeg" id="logo" alt="">
@@ -35,16 +44,17 @@
         <div class="menu">
             <p><a href="../views/index.php">Inicio</a></p>
             <p><a href="../views/servicios.php">Servicios</a></p>
-            <p><a href="../views/productos.php">Productos</a></p>
+            <p><a href="../views/index.php">Productos</a></p>
             <p><a href="../views/acercade.php">Acerca de</a></p>
         </div>
         <div class="contenedor">
-        <div class="slide">
-            
-                <button>
-                        
+        <div class="slide2">    
+                <form action="../controlador/controlador_servicio.php" method="get">
+
+                <input type="submit" name="accion" value="Hidratacion">
+                      <input type="hidden" name="">  
                         <p>Hidratacion y nutricion de la piel</p>
-                </button>             
+</input>             
             
             
                 <button>
@@ -89,13 +99,17 @@
                 </button>             
             
             
+                </form>
+                
         </div>
         
        
 
-            <div class="slide2">
+            <div class="slide">
                 <h1>a</h1>
-                <?php foreach ($todosServicios as $servicio): ?>
+                <?php 
+
+                foreach ($todosServicios as $servicio): ?>
                 <div class="tarjeta">
                     <div class="div-tarjet-img">
                         <img src="<?php echo $servicio['imagen']; ?>" alt="<?php echo $servicio['nombre']; ?>">
@@ -127,11 +141,7 @@
         <p>Correo:cosmetologiawmcj@gmail.com</p>
         <p>Telefono:3123211</p>
 
-        <div>
-            <img src="../public/images/bxl-whatsapp.svg" alt="">
-            <img src="../public/images/bxl-instagram.svg" alt="">
-        </div>
-
+        
     </footer>
 
     

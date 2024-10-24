@@ -14,6 +14,9 @@ $cliente = $_SESSION['cliente'];
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Merienda:wght@300..900&family=Playwrite+CU:wght@100..400&display=swap" rel="stylesheet">
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Perfil del Usuario</title>
@@ -29,25 +32,27 @@ $cliente = $_SESSION['cliente'];
             <li><a href="../controlador/controlador_cerrar_sesion.php">Cerrar Sesión</a></li>
         </nav>
     </header>
-
-    <div class="container">
-        <h2>Información del Cliente</h2>
-        <table>
-            <tr>
-                <th>Documento</th>
-                <td><?php echo htmlspecialchars($cliente['docu_clie']); ?></td>
-            </tr>
-            <tr>
-                <th>Nombre</th>
-                <td><?php echo htmlspecialchars($cliente['nombre']); ?></td>
-            </tr>
-            <tr>
-                <th>Email</th>
-                <td><?php echo htmlspecialchars($cliente['email']); ?></td>
-            </tr>
+<main>  
+      <div class="container shadow p-3 mb-5 bg-white rounded">
+        <h2>Información de la cuenta</h2>
+        <div class="tabla">
+            <div class="item">
+                <h4>Documento:</h4>
+                <p><?php echo htmlspecialchars($cliente['docu_clie']); ?></p>
+</div>
+            <div class="item">
+                <h4>Nombre:</h4>
+                <p><?php echo htmlspecialchars($cliente['nombre']); ?></p>
+</div>
+            <div class="item">
+                <h4 class="">Email:</h4>
+                <p><?php echo htmlspecialchars($cliente['email']); ?></p>
+</div>
             <!-- Aquí puedes añadir más campos si es necesario -->
-        </table>
+</div>
+        <button class="btn btn-success">Actualizar</button>
     </div>
+    </main>
 
 </body>
 </html>

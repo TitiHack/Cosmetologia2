@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Iniciar Sesión</title>
-    <link rel="stylesheet" href="../public/css/styles-registro.css">
+    <link rel="stylesheet" href="../public/css/styles-inicio-sesion.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -32,11 +32,11 @@
                 <div class="contItems">
                     <div class="alineado">
                         <h3>Documento:</h3>
-                        <input type="text" name="documento" required>
+                        <input type="text" name="docu_clie" required>
                     </div>
                     <div class="alineado">
                         <h3>Contraseña:</h3>
-                        <input type="password" name="contrasena" required>
+                        <input type="password" name="contraseña" required>
                     </div>
                 </div>
 
