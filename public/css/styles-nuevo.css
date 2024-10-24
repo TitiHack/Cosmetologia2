@@ -133,7 +133,7 @@ main{
 
 
 .slide{
-    width: 60rem;      
+    width: 70%;      
     margin-left: 5rem;
     margin: 4rem;
     flex-wrap: wrap;
@@ -142,12 +142,18 @@ main{
     border-radius: 0.9rem;
     align-content: center; 
     display: flex;
+    justify-content: space-around;
+    position: relative;
+    top: -25rem;
+    right: -20rem;
 
 }
 
 .contenido{
     display: flex;
+    width: 100%;
     background-color: #fff;
+    justify-content: space-around;
 }
 
 

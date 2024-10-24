@@ -5,10 +5,10 @@ include_once '../models/ProveedorModelo.php';
 $proveedor = new Proveedor($conn);
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    
+    $accion = $_POST['accion'];
+    echo $accion;
     
     if (isset($_POST['accion'])) {
-        $accion = $_POST['accion'];
 
         // Crear un nuevo proveedor
         if ($accion === 'crear') {
@@ -19,7 +19,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $apellido = $_POST['apellido'];
             $celular = $_POST['celular'];
             $proveedor->crear($docu_prov, $nombre, $email, $contrasena,$celular,$apellido);
-            echo "proveedor creado con éxito";
+            echo "<script>
+            alert('CREADO CON ÉXITO');
+            window.location.href = '../views/inicio-sesion.php'; // Redirige a otra página si es necesario
+        </script>";         
+
             
         // Actualizar un proveedor
         } elseif ($accion === 'actualizar') {

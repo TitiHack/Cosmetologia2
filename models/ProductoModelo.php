@@ -18,13 +18,12 @@ class Producto {
     }
 
     // Actualizar un producto
-    public function actualizar($id_producto, $nombre, $descripcion, $precio, $imagen, $docu_prov, $stock, $categoria) {
-        $consulta = $this->db->prepare("UPDATE producto SET nombre = ?, descripcion = ?, precio = ?, imagen = ?, docu_prov = ?, stock = ?, categoria = ? WHERE id_producto = ?");
-        $consulta->bind_param("issdsisi", $id_producto, $nombre, $descripcion, $precio, $imagen, $docu_prov, $stock, $categoria);
+    public function actualizar($id_producto, $nombre, $descripcion, $precio, $docu_prov, $stock, $categoria) {
+        $consulta = $this->db->prepare("UPDATE producto SET nombre = ?, descripcion = ?, precio = ?, docu_prov = ?, stock = ?, categoria = ? WHERE id_producto = ?");
+        $consulta->bind_param("ssdsisi", $nombre, $descripcion, $precio, $docu_prov, $stock, $categoria, $id_producto);
         return $consulta->execute();
-        
     }
-
+    
     // Eliminar un producto
   public function eliminar($id_producto) {
     $sql = "DELETE FROM producto WHERE id_producto = ?"; // Usa un marcador de posición
@@ -60,5 +59,87 @@ class Producto {
         $resultado = $this->db->query($consulta);
         return $resultado->fetch_all(MYSQLI_ASSOC);
     }
+
+    public function obtenerPorId($id_producto) {
+        // Preparar la consulta para obtener el producto por ID
+        $sql = "SELECT * FROM producto WHERE id_producto = ?";
+        
+        // Preparar la declaración
+        $stmt = $this->db->prepare($sql);
+        if (!$stmt) {
+            // Manejar error si no se puede preparar la declaración
+            die("Error en la preparación de la consulta: " . $this->conn->error);
+        }
+        
+        // Vincular el parámetro
+        $stmt->bind_param('i', $id_producto);
+        
+        // Ejecutar la consulta
+        $stmt->execute();
+        
+        // Obtener el resultado
+        $result = $stmt->get_result();
+        
+        // Verificar si se encontró un producto
+        if ($result->num_rows > 0) {
+            return $result->fetch_assoc(); // Retorna el producto como un array asociativo
+        } else {
+            return null; // Retorna null si no se encuentra el producto
+        }
+        
+        // Cerrar la declaración
+        $stmt->close();
+    }
+    public function restarStock($productoId, $cantidad) {
+        // Asegúrate de que la consulta esté correctamente estructurada
+        $sql = "UPDATE producto SET stock = stock - ? WHERE id_producto = ?";
+        
+        // Preparar la consulta
+        $stmt = $this->db->prepare($sql);
+        
+        if ($stmt === false) {
+            die('Error en la preparación de la consulta: ' . $this->conn->error);
+        }
+
+        // Bind de los parámetros
+        $stmt->bind_param('ii', $cantidad, $productoId);
+
+        // Ejecutar la consulta
+        if ($stmt->execute()) {
+            return true; // Stock actualizado con éxito
+        } else {
+            echo 'Error al actualizar: ' . $stmt->error; // Imprimir error en caso de fallo
+            return false; // Error al actualizar
+        }
+
+        // Cerrar el statement
+        $stmt->close();
+    }
+    public function obtenerProductoPorId($productoId) {
+        $sql = "SELECT * FROM producto WHERE id_producto = ?";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bind_param("i", $productoId); // Cambia a "i" si id es un entero
+        $stmt->execute();
+        $resultado = $stmt->get_result();
+        
+        return $resultado->fetch_assoc(); // Devuelve el producto como un array asociativo
+    }
+    public function validarStock($productoId, $cantidad) {
+        $sql = "SELECT stock FROM productos WHERE id_producto = ?";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bind_param("i", $productoId);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        
+        if ($row = $result->fetch_assoc()) {
+            // Verifica si el stock es suficiente
+            return $row['stock'] >= $cantidad;
+        } else {
+            return false; // Si no encuentra el producto, retorna false
+        }
+    }
+    
+    
 }
 ?>
+

@@ -28,6 +28,9 @@
             <img src="../public/images/logo2.jpeg" alt="">
         </div>
         <div class="contenido">
+            <h4>
+                 Usuario
+            </h4>
             <form action="../controlador/controlador_cliente.php" method="post">
                 <div class="contItems">
                     <div class="alineado">
@@ -42,7 +45,26 @@
 
                 <input type="hidden" name="accion" value="iniciar_sesion">
                 <input type="submit" name="iniciar" value="Iniciar Sesión">
-            </form>    
+            </form>   
+            <hr>
+            <h4>
+                Proveedor
+            </h4>
+            <form action="../controlador/controlador_proveedor.php" method="post">
+                <div class="contItems">
+                    <div class="alineado">
+                        <h3>Documento:</h3>
+                        <input type="text" name="docu_prov" required>
+                    </div>
+                    <div class="alineado">
+                        <h3>Contraseña:</h3>
+                        <input type="password" name="contraseña" required>
+                    </div>
+                </div>
+
+                <input type="hidden" name="accion" value="iniciar_sesion">
+                <input type="submit" name="iniciar" value="Iniciar Sesión">
+            </form>   
         </div>
     </div>
 </body>

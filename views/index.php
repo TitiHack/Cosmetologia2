@@ -29,13 +29,14 @@ $todosProductos = $producto->obtenerTodos(); // Obtiene todos los productos
             <h1>Cosmetologia Ilusion Y Belleza</h1>          
             <div class="header2"></div>
             <div class="icons">
-            <?php if (isset($_SESSION['cliente']) /*&& $_SESSION['rol']*/ ): ?>
+            <?php if (isset($_SESSION['cliente'])  ): ?>
                 <button><a href="../views/admin.php">Administrar</a></button>
             <?php endif; ?>
                 <button><a href="../views/nuevo.php">Nuevo</a></button>
-                <img src="../public/images/carro-de-la-compra.png" alt="">
-                <?php if (isset($_SESSION['cliente']) /*&& $_SESSION['rol']*/ ): ?>
-                    <a href="../views/perfil.php"><img src="../public/images/avatar.png" alt=""></a>
+                <a href="./carrito.php">                <img src="../public/images/carro-de-la-compra.png" alt="">
+                </a>
+                <?php if (!isset($_SESSION['']) /*&& $_SESSION['rol']*/ ): ?>
+                    <a href="../views/perfil.php"><img src="../public/images/avatar.png" alt=""></a> 
 
             <?php endif; ?>
             </div>
@@ -50,32 +51,36 @@ $todosProductos = $producto->obtenerTodos(); // Obtiene todos los productos
             <p><a href="../views/acercade.php">Acerca de</a></p>
         </div>
 
-            <div class="slide">
-                <?php foreach ($todosProductos as $producto): ?>
-                <div class="tarjeta">
-                    <div class="div-tarjet-img">
-                        <img src="<?php echo $producto['imagen']; ?>" alt="<?php echo $producto['nombre']; ?>">
-                    </div>
-                    <h2 class="nameProduct"><?php echo $producto['nombre']; ?></h2>
-                    
-                    <div class="category">
-                        <p class="SpaceP">Categoria:   </p>
-                    <p><?php echo $producto['categoria']; ?></p>
-
-                    </div>
-                    <div class="price">
-                        <p  class="SpaceP">Precio:  </p>
-
-                        <p class="precio"><?php echo number_format($producto['precio'], 0, ',', '.'); ?>$</p>
-                        
-                    </div>
-                    <button >Ver Mas...</button>
-                </div>
-                <?php endforeach; ?>
-            </div>
-            <div>
-                <p></p>
-            </div>
+        <div class="slide">
+    <?php foreach ($todosProductos as $producto): ?>
+    <div class="tarjeta">
+        <div class="div-tarjet-img">
+            <img src="<?php echo $producto['imagen']; ?>" alt="<?php echo $producto['nombre']; ?>">
+        </div>
+        <h2 class="nameProduct"><?php echo $producto['nombre']; ?></h2>
+        
+        <div class="category">
+            <p class="SpaceP">Categoria: </p>
+            <p><?php echo $producto['categoria']; ?></p>
+        </div>
+        <div class="price">
+            <p class="SpaceP">Precio: </p>
+            <p class="precio"><?php echo number_format($producto['precio'], 0, ',', '.'); ?>$</p>
+        </div>
+        <div class="category">
+            <p class="SpaceP">Stock: </p>
+            <p><?php echo $producto['stock']; ?></p>
+        </div>
+        <form method="POST" action="../controlador/agregarCarrito.php">
+            <input type="hidden" name="id_producto" value="<?php echo $producto['id_producto']; ?>">
+            <input type="hidden" name="nombre" value="<?php echo $producto['nombre']; ?>">
+            <input type="hidden" name="precio" value="<?php echo $producto['precio']; ?>">
+            <input type="hidden" name="imagen" value="<?php echo $producto['imagen']; ?>">
+            <button type="submit">Agregar al carrito</button>
+        </form>
+    </div>
+    <?php endforeach; ?>
+</div>
                 
     </main>
 

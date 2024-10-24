@@ -83,12 +83,19 @@ transform: matrix3d(1.1, 0, 0, 0, 0, 1.1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
 .contenido{
     background-color: #ffffff;
     width: 30rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  
     
 
+}
+hr{
+    height: 5px;
+    margin-top: 1rem;
+    background-color: #4e4b4b;
+}
+.contenido h4{
+    text-align: center;
+    margin-top: 1rem;
+    color: red;
 }
 .contenido h3{
     font-family: 'Merienda';

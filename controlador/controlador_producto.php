@@ -1,9 +1,12 @@
-<?php
+ <?php
 include_once '../Conexion/conexion.php';
 include_once '../models/ProductoModelo.php';
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 $producto = new Producto($conn);
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -29,6 +32,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 echo "ID del producto no proporcionado.";
                 exit;
             }
+        }elseif ($accion === 'actualizar') {
+            $id_producto = $_POST['id_producto'];
+            $nombre = $_POST['nombre'];
+            $descripcion = $_POST['descripcion'];
+            $precio = $_POST['precio'];
+            $docu_prov = $_POST['docu_prov'];
+            $stock = $_POST['stock'];
+            $categoria = $_POST['categoria'];
+            
+            
+            // Llama al método actualizar de la clase Producto
+            if ($producto->actualizar($id_producto, $nombre, $descripcion, $precio, $docu_prov, $stock, $categoria)) {
+                echo "<script>
+                    alert('Producto actualizado correctamente');
+                    window.location.href = '../views/Productoscrud.php';  
+                </script>";
+            } else {
+                echo "<script>
+                    alert('Error al actualizar el producto: " . $producto->db->error . "');
+                    window.history.back();
+                </script>";
+            }
         }
         
         elseif ($accion == 'crear') {
@@ -37,10 +62,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $descripcion = $_POST['descripcion'];
             $precio = $_POST['precio'];
             $imagen = $_FILES['imagen'];
-            $docu_prov = $_POST['docu_prov'];
+            $docu_prov = $_SESSION['proveedor']['docu_prov'];
             $stock = $_POST['stock'];
             $categoria = $_POST['categoria']; // Nuevo campo para categoría
-
+            echo $docu_prov;
          // Verificar si hay un error al subir la imagen
          if ($imagen['error'] === UPLOAD_ERR_OK) {
              $nombreArchivo = $imagen['name'];
@@ -68,7 +93,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                      if ($producto->crear($id_producto, $nombre, $descripcion, $precio, $rutaDestino, $docu_prov, $stock, $categoria)) {
                         echo "<script>
                                     alert('Producto creado correctamente');
-                                    window.location.href = '../views/Productoscrud.php';  
+                                    window.location.href = '../views/index.php';  
+
                               </script>";
                      } 
                     

@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="../public/css/styles-nuevo.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
 <link href="https://fonts.googleapis.com/css2?family=Merienda:wght@300..900&family=Playwrite+CU:wght@100..400&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -33,53 +35,93 @@
     </header>
     <main>
         <div class="menu">
-            <p><a href="../views/index.php">Inicio</a></p>
-            <p><a href="../views/servicios.php">Servicios</a></p>
-            <p><a href="../views/productos.php">Productos</a></p>
-            <p><a href="../views/acercade.php">Acerca de</a></p>
+            <p><a style="color:white;" href="../views/index.php">Inicio</a></p>
+            <p><a style="color:white;" href="../views/servicios.php">Servicios</a></p>
+            <p><a style="color:white;" href="../views/productos.php">Productos</a></p>
+            <p><a style="color:white;"href="../views/acercade.php">Acerca de</a></p>
         </div>
 
         <div class="slide">
             
 
             <div class="contenido">           
-                <div>        
-                <form method="POST">
-                        <h2>Producto</h2>
-                        <p>Nombre</p>
-                        <input type="text" name="nombre">
-                        <p>Descripcion</p>
-                        <input type="text" name="descripcion">
-                        <p>Precio</p>
-                        <input type="number" name="precio" id="">
-                        <p>Categoria</p>
-                        <input type="text"`name="categoria">
-                        <p>Insertar imagen</p>
-                        <input type="file" name="imagen">
-                        <input value="Agregar producto" type="submit" name="agregar"></input>
-                    </form>
-                </div>
-                <div>
-                    <form action="">
-                    <h2>Servicio</h2>
-                        <p>Nombre</p>
-                        <input type="text">
-                        <p>Descripcion</p>
-                        <input type="text">
-                        <p>Precio</p>
-                        <input type="number" name="" id="">
-                        <p>Categoria</p>
-                        <input type="text">
-                        <p>Insertar imagen</p>
-                        <input type="file">
-                        <input value="Agregar servicio" type="submit" name="agregar"></input>
-                    </form>
-                </div>
+                      
+                <form action="../controlador/controlador_producto.php" method="POST" enctype="multipart/form-data">
+    <input type="hidden" name="accion" value="crear" id="accion">
+    <input type="hidden" name="id_producto" id="id_producto">
+
+    <div class="form-group">
+        <label for="nombre">Nombre:</label>
+        <input type="text" class="form-control" name="nombre" id="nombre" required>
+    </div>
+
+    <div class="form-group">
+        <label for="descripcion">Descripción:</label>
+        <input type="text" class="form-control" name="descripcion" id="descripcion" required>
+    </div>
+
+    <div class="form-group">
+        <label for="precio">Precio:</label>
+        <input type="number" class="form-control" name="precio" id="precio" required>
+    </div>
+
+    <div class="form-group">
+        <label for="imagen">Imagen:</label>
+        <input type="file" class="form-control" name="imagen" id="imagen" required>
+    </div>
+
+    <div class="form-group">
+        <label for="categoria">Categoría:</label>
+        <input type="text" class="form-control" name="categoria" id="categoria" required>
+    </div>
+
+    <div class="form-group">
+        <label for="stock">Stock:</label>
+        <input type="number" class="form-control" name="stock" id="stock" required>
+    </div>
+
+    <button type="submit" class="btn btn-success">Guardar Producto</button>
+</form>
+
+                <form action="../controlador/controlador_servicio.php" method="POST" enctype="multipart/form-data">
+    <input type="hidden" name="accion" value="agregar">
+
+  
+
+    <div class="form-group">
+        <label for="nombre">Nombre:</label>
+        <input type="text" class="form-control" name="nombre" required>
+    </div>
+
+    <div class="form-group">
+        <label for="descripcion">Descripción:</label>
+        <textarea class="form-control" name="descripcion" required></textarea>
+    </div>
+
+    <div class="form-group">
+        <label for="precio">Precio:</label>
+        <input type="number" step="0.01" class="form-control" name="precio" required>
+    </div>
+
+    <div class="form-group">
+        <label for="imagen">Imagen URL:</label>
+        <input type="file" class="form-control" name="imagen" required>
+    </div>
+
+  
+
+    <div class="form-group">
+        <label for="categoria">Categoría:</label>
+        <input type="text" class="form-control" name="categoria" required>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Agregar Servicio</button>
+</form>
+     
                 
                 
                 
-                
-            </div>
+           
         
             
             
